@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+    <appSettings file="App.config">
+      <add key="url" value="http://localhost:42100/?uuid=MoBro"/>
+      <!-- Screen info -->
+      <add key="screen_id" value="0"/>
+      <add key="screen_width" value="1024"/>
+      <add key="screen_height" value="600"/>
+    </appSettings>
+</configuration>
