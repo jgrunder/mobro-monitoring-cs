@@ -32,19 +32,29 @@ First of all, you must have the MoBro server installed on your system and have c
 
 1. Download the last [available release](https://github.com/jgrunder/mobro-monitoring-cs/releases)
 2. Unzip into any folder
-3. Copy and rename the `App.config.example` file into `App.config`
-4. Adjust the configuration file to your needs:
+3. Adjust the `mobro-monitoring-cs.exe.config` configuration file to your needs:
 - `url`: The URL to your MoBro server (in most cases keep it to default)
 - `screen_id`: ID of the screen you want to display the monitoring data (must be adapted to your system)
 - `screen_width` and `screen_height`: native resolution of your screen
 
 Please keep in mind that in this draft version there is no security yet for the data entered in the configuration file, so only enter data in the expected format otherwise the application will cause an error and stop working.
 
-##Launch at Windows start
+## Launch at Windows start
 
 Go to `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` and create a shortcut that points to the file `mobro-monitoring-cs.exe`
 
 ## Contribute
 
 Contributions are always welcome!
+
+1. Clone/fork this repository
+2. Copy and rename the `App.config.example` file into `App.config`
+3. Open the file `mobro-monitoring-cs.sln` with Visual Studio 2019+ (both community and pro versions should work)
+4. [Add a x64 CPU](https://www.google.com/search?q=visual+studio+add+cpu+64)
+5. Generate the solution with this CPU (this will also download and install NuGet packages dependencies)
+
 Create one pull request for one request / update / change / add
+
+## ToDo
+
+Everything :)
