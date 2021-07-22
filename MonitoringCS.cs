@@ -10,9 +10,7 @@ namespace mobro_monitoring_cs
         public ChromiumWebBrowser browser;
         // Get all parameters from application configuration file
         private readonly string url = ConfigurationManager.AppSettings.Get("url");
-        private readonly int screenId = int.Parse(ConfigurationManager.AppSettings.Get("screen_id"));
-        private readonly int screenWidth = int.Parse(ConfigurationManager.AppSettings.Get("screen_width"));
-        private readonly int screenHeight = int.Parse(ConfigurationManager.AppSettings.Get("screen_height"));
+        private Screen screenToGo;
         public void InitBrowser()
         {
             Cef.Initialize(new CefSettings());
@@ -22,13 +20,30 @@ namespace mobro_monitoring_cs
         }
         public MonitoringCS()
         {
+            // Check all connected screens
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                // A monitoring screen has formally its width <= 1024
+                if (screen.Bounds.Width <= 1024)
+                {
+                    screenToGo = screen;
+                }
+            }
+
+            // If no monitoring screen found, exit application
+            if (screenToGo is null)
+            {
+                MessageBox.Show("No screen found !");
+                System.Environment.Exit(1);
+            }
+
             InitializeComponent();
             // Set application size
-            Width = screenWidth;
-            Height = screenHeight;
+            Width = screenToGo.Bounds.Width;
+            Height = screenToGo.Bounds.Height;
             // Set start position
             StartPosition = FormStartPosition.Manual;
-            Location = Screen.AllScreens[screenId].WorkingArea.Location;
+            Location = screenToGo.WorkingArea.Location;
             InitBrowser();
         }
     }
